@@ -31,6 +31,10 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
+        //Aufgabe3
+
+        if (screen.length() >= 9) return;// hinfuegen nicht mehr möglich
+
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
         screen = screen + digit;
@@ -118,6 +122,11 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+        //Aufgabe3
+
+        if (screen.equals("Error")) return;// Egal wie lange man gleichzeichen drück dann kommt immer error
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
